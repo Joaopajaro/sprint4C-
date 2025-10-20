@@ -4,12 +4,7 @@ using StudentApi.Models;
 
 namespace StudentApi.Services
 {
-    /// <summary>
-    /// Provides business logic for CRUD operations on Products.  The service
-    /// interacts with the Entity Framework Core DbContext and exposes async
-    /// methods that the controllers can call.  LINQ is used to build queries
-    /// against the DbSet, demonstrating simple filtering.
-    /// </summary>
+
     public class ProductService
     {
         private readonly ApplicationDbContext _context;
@@ -19,15 +14,9 @@ namespace StudentApi.Services
             _context = context;
         }
 
-        /// <summary>
-        /// Returns all products.  If a search term is provided the results are
-        /// filtered using LINQ on the Name and Description properties.
-        /// </summary>
+  
         public async Task<List<Product>> GetAllAsync(string? search = null)
         {
-            // Use IQueryable so that the LINQ query is only executed once at
-            // enumeration time.  This avoids retrieving all rows when a filter
-            // could have been applied in the database provider.
             var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(search))
@@ -40,14 +29,9 @@ namespace StudentApi.Services
             return await query.ToListAsync();
         }
 
-        /// <summary>
-        /// Returns a single product by identifier or null if none exists.
-        /// </summary>
+        
         public async Task<Product?> GetByIdAsync(int id) => await _context.Products.FindAsync(id);
 
-        /// <summary>
-        /// Adds a new product to the database and saves changes.
-        /// </summary>
         public async Task<Product> CreateAsync(Product product)
         {
             _context.Products.Add(product);
@@ -55,11 +39,6 @@ namespace StudentApi.Services
             return product;
         }
 
-        /// <summary>
-        /// Updates an existing product.  Returns false if the product does not
-        /// exist.  EF Core tracks the entity and will only send the changed
-        /// columns to the provider when SaveChangesAsync is called.
-        /// </summary>
         public async Task<bool> UpdateAsync(int id, Product product)
         {
             if (id != product.Id)
@@ -82,9 +61,7 @@ namespace StudentApi.Services
             return true;
         }
 
-        /// <summary>
-        /// Deletes a product by id.  Returns false if the product is not found.
-        /// </summary>
+     
         public async Task<bool> DeleteAsync(int id)
         {
             var product = await _context.Products.FindAsync(id);
