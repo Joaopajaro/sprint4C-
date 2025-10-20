@@ -1,38 +1,5 @@
 # API de Produtos — Trabalho de C#
 
-Este repositório contém o código de uma aplicação **ASP.NET Core Web API** que
-implementa um **CRUD** completo para produtos, integra com uma API pública de
-piadas e utiliza **Swagger/OpenAPI** para gerar documentação interativa. O
-objetivo é apresentar uma solução funcional para o trabalho de faculdade,
-privilegiando legibilidade e estruturação em vez de complexidade
-profissional.
-
-## Requisitos atendidos
-
-* **CRUD completo (35 %)** – O controlador `ProductsController` expõe
-  endpoints para **criar**, **ler**, **atualizar** e **deletar** produtos.
-  As operações são implementadas no serviço `ProductService` utilizando o
-  **Entity Framework Core** com banco de dados em memória.
-* **Pesquisas com LINQ (10 %)** – O método `GetAllAsync` do
-  `ProductService` recebe um parâmetro `search` e utiliza **LINQ** para
-  filtrar produtos cujo nome ou descrição contém o termo procurado.
-* **Publicação em ambiente Cloud (15 %)** – O projeto foi configurado com
-  Swagger ativo em todos os ambientes, conforme recomendado pela
-  documentação da Microsoft【607809691539310†L144-L178】, facilitando a
-  publicação em serviços como **Azure App Service**. Consulte a seção
-  *Publicação* para instruções sobre como implantar a API na nuvem.
-* **Endpoints conectando com outras APIs (20 %)** – O controlador
-  `ExternalController` expõe o endpoint `GET /api/external/joke` que utiliza
-  `HttpClient` para buscar uma piada aleatória em uma API pública. O
-  serviço `JokeService` encapsula a chamada externa.
-* **Documentação do projeto (10 %)** – Este `README.md` explica a
-  estrutura, os requisitos atendidos, instruções de uso e sugestões de
-  publicação. O Swagger/OpenAPI gera documentação interativa acessível em
-  `/swagger`.
-* **Arquitetura em diagramas (10 %)** – O diagrama abaixo resume a
-  arquitetura da solução, mostrando a separação entre controladores,
-  serviços, camadas de acesso a dados e integrações externas.
-
 ![Diagrama de arquitetura](architecture.png)
 
 ## Estrutura do projeto
@@ -85,31 +52,4 @@ StudentApi/
 Os primeiros produtos são carregados em memória automaticamente. Use a
 interface Swagger para testar os endpoints de CRUD e pesquisa.
 
-## Publicação na nuvem
 
-Uma maneira simples de publicar a API é usar o **Azure App Service**. O
-passo a passo básico é:
-
-1. Crie uma conta Azure e um serviço App Service.
-2. No Visual Studio ou usando a CLI do .NET, publique o projeto
-   selecionando *Azure App Service* como destino. As páginas oficiais da
-   Microsoft detalham como criar o projeto com suporte a OpenAPI e como
-   movê‑lo para a nuvem【607809691539310†L144-L178】.
-3. Após a publicação, o Swagger estará acessível no endereço
-   `https://<nome‑da‑app>.azurewebsites.net/swagger`.
-
-Alternativamente, você pode configurar um **GitHub Action** para fazer o
-deploy contínuo sempre que houver push no branch principal.
-
-## Observações finais
-
-- Este projeto foi desenvolvido com foco didático. A camada de dados usa
-  banco em memória para simplificar a configuração; para um cenário real,
-  substitua por `UseSqlServer` ou outro provedor.
-- A estrutura em camadas (Controllers → Services → Data) favorece a
-  legibilidade e facilita a manutenção.
-- O repositório utiliza controle de versão git. Para submissão final,
-  hospede este código em um repositório privado (GitHub, Azure DevOps ou
-  GitLab) e compartilhe o link de leitura com o professor.
-
-Bom estudo e sucesso no seu trabalho!
