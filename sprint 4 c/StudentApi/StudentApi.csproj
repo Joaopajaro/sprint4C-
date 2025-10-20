@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <!-- Target .NET 8.0 so the project builds with the current LTS release -->
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- Enable nullable reference types for better safety -->
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Use the in‑memory database provider for Entity Framework Core to keep the
+         assignment simple and avoid external dependencies. -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.3" />
+
+    <!-- Swashbuckle provides the middleware for generating the OpenAPI (Swagger)
+         specification and hosting a Swagger UI so the API can be explored in the
+         browser. -->
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+</Project>
